@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google map</title>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmsExZoA1swmtgNOYJCsVaeGMyEVne2tE&callback=initMap">
+        </script>
+
+    <style>
+        #map {
+            width: 800px;
+            height: 500px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            // The location of Uluru
+            const tasmania = {
+                lat: -41.87799374524863, lng: 146.4318650179951
+
+            };
+            // The map, centered at Uluru
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 7,
+                center: tasmania,
+            });
+            // The marker, positioned at Uluru
+            const img = "img/placeholder.png"
+            const marker = new google.maps.Marker({
+                position: tasmania,
+                map: map,
+                title: "塔斯馬尼亞島",
+                icon: img
+            });
+            const infoWindow = new google.maps.InfoWindow({
+                content: "♡",
+                ariaLabel: "塔斯馬尼亞島",
+            });
+            marker.addListener("click", () => {
+                infoWindow.open({
+                    anchor: marker,
+                    map,
+                });
+            });
+        }
+
+        window.initMap = initMap;
+    </script>
+</body>
+
+</html>
